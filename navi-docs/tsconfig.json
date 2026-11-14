@@ -1,8 +1,24 @@
 {
-	"extends": "astro/tsconfigs/strict",
-	"include": [".astro/types.d.ts", "**/*"],
-	"exclude": ["dist"],
-	"compilerOptions": {
-		"typescript": { "tsdk": "node_modules/typescript/lib" }
-	}
+  "extends": "astro/tsconfigs/strict",
+  "include": [
+    ".astro/types.d.ts",
+    "**/*"
+  ],
+  "exclude": [
+    "dist"
+  ],
+  "compilerOptions": {
+    "typescript": {
+      "tsdk": "node_modules/typescript/lib"
+    },
+    "skipLibCheck": true,
+    "paths": {
+      "starlight-view-modes": [
+        "node_modules/@elcoosp/docs-toolkit/src/stubs/starlight-view-modes.d.ts"
+      ],
+      "starlight-telescope": [
+        "node_modules/@elcoosp/docs-toolkit/src/stubs/starlight-telescope.d.ts"
+      ]
+    }
+  }
 }
