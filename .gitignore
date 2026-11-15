@@ -2,3 +2,7 @@ target
 wr.sh
 .vercel
 .env*
+
+# Build-time backups
+*.bak
+*.orig
