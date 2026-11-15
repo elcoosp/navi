@@ -3,7 +3,7 @@ import starlightImageZoom from "starlight-image-zoom";
 
 export default await defineDocsConfig({
   llmsTxt: {},
-  site: 'https://navi.vercel.app',
+  site: 'https://navi-docs-site.vercel.app',
   domain: 'navi.vercel.app',
   title: "Navi",
   description: "A powerful file-based router for Rust UI frameworks — one route table, every frontend, powered by quoin.",
