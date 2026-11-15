@@ -1,0 +1,53 @@
+---
+title: How we built a file-based router that runs on five Rust UI frameworks
+date: 2026-11-15
+cover:
+  alt: Navi Architecture
+  image: ./welcome-cover.jpg
+image: ./welcome-cover.jpg
+---
+
+import { Card, CardGrid, Aside } from '@astrojs/starlight/components';
+
+In Rust desktop and WASM applications, routing is often an afterthought: a global `Route` enum, a giant `match` block, and manual async fetching inside component mount hooks. When you switch UI toolkits, you throw the whole navigation layer away.
+
+Navi brings TanStack Router semantics—file-based route trees, loaders, guards, and devtools—to Rust without coupling the router to a single UI crate.
+
+## The Goal
+
+We wanted build-time route generation from `src/routes`, typed path and query parameters, `before_load` redirects, and scroll restoration, all running unmodified across GPUI, Dioxus, Leptos, Xilem, and Floem.
+
+## The Architecture
+
+`navi-router-core` contains zero UI dependencies and no hardcoded async runtime. It matches URLs against a ranked radix trie using interned `Arc<str>` segments and stack-collected parameter bindings, delegating reactive state and rendering to `quoin`.
+
+<CardGrid stagger>
+  <Card title="Build-Time Route Tree" icon="setting">
+    `navi-codegen` scans `src/routes` in `build.rs` and emits a validated route tree alongside typed `use_params!` and `use_search!` macros.
+  </Card>
+  <Card title="Loaders & Blockers" icon="rocket">
+    Routes support stale-while-revalidate data loaders (backed by `rs-query`), `before_load` guards, and async blockers for unsaved forms.
+  </Card>
+  <Card title="Allocation-Free Matching" icon="approve-check">
+    Active link checks compare bytes directly, and per-frame hooks read cached navigation state without allocating on the heap.
+  </Card>
+  <Card title="Cross-Framework Devtools" icon="puzzle">
+    Pressing `Cmd+Shift+D` opens an inspectable panel showing the route tree, cache entries, event timeline, and active blockers.
+  </Card>
+</CardGrid>
+
+## What it cost
+
+Keeping the core framework-free meant enforcing strict workspace rules: `#![forbid(unsafe_code)]`, pedantic Clippy lints with zero `#[allow]` suppressions, and maintaining five separate host demos (`demo-gpui`, `demo-dioxus`, `demo-floem`, `demo-xilem`, `demo-leptos`) over one shared `demo-core` crate.
+
+<Aside type="caution" title="The Trade-off">
+Portable routes render as `quoin_ui::Node` trees or `component!` blocks so they compile across all five backends. If you need direct access to raw GPUI-specific elements, you have to step out of the portable abstraction using `quoin`'s `rsx!` escape hatch.
+</Aside>
+
+## Getting started
+
+```bash
+cargo run -p navi-demo-gpui
+```
+
+Read the [getting started tutorial](/tutorials/getting-started/) to configure `navi.config.json` and define your first route.
