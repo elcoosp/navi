@@ -1,0 +1,53 @@
+---
+title: Comment nous avons conçu un routeur basé sur les fichiers pour cinq frameworks UI Rust
+date: 2026-11-15
+cover:
+  alt: Architecture de Navi
+  image: ../../blog/welcome-cover.jpg
+image: ../../blog/welcome-cover.jpg
+---
+
+import { Card, CardGrid, Aside } from '@astrojs/starlight/components';
+
+Dans les applications Rust desktop et WASM, le routage est souvent relégué au second plan : une énumération globale `Route`, un bloc `match` géant et des chargements asynchrones manuels dans les hooks de montage des composants. Dès que vous changez de boîte à outils UI, vous devez jeter toute la couche de navigation.
+
+Navi apporte la sémantique de TanStack Router — arbres de routes basés sur les fichiers, chargeurs, gardes et outils de développement — à Rust, sans coupler le routeur à une unique crate UI.
+
+## L'objectif
+
+Nous voulions une génération d'arbre de routes à la compilation depuis `src/routes`, des paramètres de chemin et de requête typés, des redirections `before_load` et la restauration du défilement, le tout fonctionnant sans modification sur GPUI, Dioxus, Leptos, Xilem et Floem.
+
+## L'architecture
+
+`navi-router-core` ne contient aucune dépendance UI ni aucun runtime asynchrone figé. Il fait correspondre les URL à un arbre radix pondéré utilisant des segments `Arc<str>` internés et des liaisons de paramètres collectées sur la pile, tout en déléguant l'état réactif et le rendu à `quoin`.
+
+<CardGrid stagger>
+  <Card title="Arbre de routes généré à la compilation" icon="setting">
+    `navi-codegen` analyse `src/routes` dans `build.rs` et génère un arbre de routes validé accompagné des macros typées `use_params!` et `use_search!`.
+  </Card>
+  <Card title="Chargeurs et bloqueurs" icon="rocket">
+    Les routes prennent en charge les chargeurs de données stale-while-revalidate (propulsés par `rs-query`), les gardes `before_load` et les bloqueurs asynchrones pour les formulaires non enregistrés.
+  </Card>
+  <Card title="Correspondance sans allocation" icon="approve-check">
+    La vérification des liens actifs compare directement les octets, et les hooks exécutés à chaque image lisent l'état de navigation mis en cache sans allocation sur le tas.
+  </Card>
+  <Card title="Outils de développement multi-frameworks" icon="puzzle">
+    Le raccourci `Cmd+Shift+D` ouvre un panneau d'inspection affichant l'arbre des routes, les entrées du cache, la chronologie des événements et les bloqueurs actifs.
+  </Card>
+</CardGrid>
+
+## Ce que cela a coûté
+
+Garder le cœur indépendant de tout framework a imposé des règles strictes sur le workspace : `#![forbid(unsafe_code)]`, des lints Clippy pédants sans aucune suppression `#[allow]`, et la maintenance de cinq démonstrations hôtes distinctes (`demo-gpui`, `demo-dioxus`, `demo-floem`, `demo-xilem`, `demo-leptos`) au-dessus d'une même crate partagée `demo-core`.
+
+<Aside type="caution" title="Le compromis">
+Les routes portables sont rendues sous forme d'arbres `quoin_ui::Node` ou de blocs `component!` afin de compiler sur les cinq backends. Si vous avez besoin d'un accès direct aux éléments natifs spécifiques à GPUI, vous devez sortir de l'abstraction portable via la trappe d'échappement `rsx!` de `quoin`.
+</Aside>
+
+## Démarrer
+
+```bash
+cargo run -p navi-demo-gpui
+```
+
+Lisez le [tutoriel de démarrage](/fr/tutorials/getting-started/) pour configurer `navi.config.json` et définir votre première route.
