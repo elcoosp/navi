@@ -1,5 +1,4 @@
 import { defineDocsConfig } from '@elcoosp/docs-toolkit/config';
-import starlightImageZoom from "starlight-image-zoom";
 
 export default await defineDocsConfig({
   llmsTxt: {},
@@ -79,6 +78,5 @@ export default await defineDocsConfig({
                         // route renders at /404 — Starlight's built-in 404
                         // route is disabled to avoid a route conflict.
                         disable404Route: true,
-                        plugins: [starlightImageZoom()]
                 },
 });
