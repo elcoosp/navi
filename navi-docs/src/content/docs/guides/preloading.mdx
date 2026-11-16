@@ -18,14 +18,7 @@ Set the `preload` builder method on a `Link` with a `PreloadType`:
 | `PreloadType::Intent` | Preload on the first mouse move over the link, after a delay. |
 | `PreloadType::Viewport` | Preload when the link enters the viewport. |
 
-<Code lang="rust" code={`use navi_router::components::{Link, PreloadType};
-use std::time::Duration;
-
-Link::new("/users/42")
-    .preload(PreloadType::Intent)
-    .preload_delay(Duration::from_millis(120))
-    .child("Open user 42")
-    .build()`} />
+<Code lang="rust" code={"use navi_router::components::{Link, PreloadType};\nuse std::time::Duration;\n\nLink::new(\"/users/42\")\n    .preload(PreloadType::Intent)\n    .preload_delay(Duration::from_millis(120))\n    .child(\"Open user 42\")\n    .build()"} />
 
 Tune how long the pointer must hover before an `Intent` preload fires with `preload_delay`.
 
@@ -39,8 +32,7 @@ Tune how long the pointer must hover before an `Intent` preload fires with `prel
 
 The `Navigator` exposes a `preload` method for the same purpose outside of links:
 
-<Code lang="rust" code={`let navigator = Navigator::new();
-navigator.preload("/users/42");`} />
+<Code lang="rust" code={"let navigator = Navigator::new();\nnavigator.preload(\"/users/42\");"} />
 
 ## Next steps
 

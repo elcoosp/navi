@@ -21,20 +21,13 @@ Deux niveaux de désactivation existent :
 | Navigation complète | Passez `reset_scroll: true` sur un `Link` pour commencer la position cible depuis le haut. |
 | Par appel de navigation | `NavigateOptions.reset_scroll` fait la même chose pour la navigation programmatique. |
 
-<Code lang="rust" code={`use navi_router::components::Link;
-
-Link::new("/dashboard")
-    .reset_scroll(true)
-    .child("Dashboard (from the top)")
-    .build()`} />
+<Code lang="rust" code={"use navi_router::components::Link;\n\nLink::new(\"/dashboard\")\n    .reset_scroll(true)\n    .child(\"Dashboard (from the top)\")\n    .build()"} />
 
 ## Monter le composant
 
 Le composant `ScrollRestoration` attache un nœud de suivi du défilement à votre UI. Donnez-lui un identifiant de handle :
 
-<Code lang="rust" code={`use navi_router::components::ScrollRestoration;
-
-ScrollRestoration::node("main-scroll").build()`} />
+<Code lang="rust" code={"use navi_router::components::ScrollRestoration;\n\nScrollRestoration::node(\"main-scroll\").build()"} />
 
 `ScrollRestoration::set_capacity(capacity)` borne combien de positions mémorisées sont conservées à la fois.
 

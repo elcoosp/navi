@@ -20,19 +20,7 @@ The hook receives a `BeforeLoadContext` and returns a `BeforeLoadResult`:
 
 The `redirect()` and `not_found()` helper functions construct the non-Ok variants, re-exported from `navi_router`:
 
-<Code lang="rust" code={`use navi_router::{BeforeLoadResult, redirect, not_found};
-
-define_route!(
-    AdminDashboardRoute,
-    path: "/admin/dashboard",
-    before_load: |ctx| async move {
-                    if !is_signed_in(&ctx) {
-                                    return BeforeLoadResult::Redirect(redirect("/login"));
-                    }
-                    BeforeLoadResult::Ok
-    },
-    node: admin_node,
-);`} />
+<Code lang="rust" code={"use navi_router::{BeforeLoadResult, redirect, not_found};\n\ndefine_route!(\n    AdminDashboardRoute,\n    path: \"/admin/dashboard\",\n    before_load: |ctx| async move {\n                    if !is_signed_in(&ctx) {\n                                    return BeforeLoadResult::Redirect(redirect(\"/login\"));\n                    }\n                    BeforeLoadResult::Ok\n    },\n    node: admin_node,\n);"} />
 
 <Aside type="note">
   `before_load` is async: you can perform session checks, permission lookups,
@@ -50,13 +38,7 @@ Routes also accept two synchronous lifecycle callbacks, each receiving the `Loca
 | `on_enter` | When someone enters the route. |
 | `on_leave` | When someone leaves the route. |
 
-<Code lang="rust" code={`define_route!(
-    ProfileRoute,
-    path: "/profile",
-    on_enter: |loc| log::info!("entered {}", loc.pathname),
-    on_leave: |loc| log::info!("left {}", loc.pathname),
-    node: profile_node,
-);`} />
+<Code lang="rust" code={"define_route!(\n    ProfileRoute,\n    path: \"/profile\",\n    on_enter: |loc| log::info!(\"entered {}\", loc.pathname),\n    on_leave: |loc| log::info!(\"left {}\", loc.pathname),\n    node: profile_node,\n);"} />
 
 ## Order of operations
 

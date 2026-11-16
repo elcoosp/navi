@@ -12,21 +12,7 @@ The runtime module boots the router and drives navigation from your host applica
 
 `RouterProvider` installs the router into your app. The README bootstrap shows the canonical construction:
 
-<Code lang="rust" code={`use navi_router::{Location, NotFoundMode, RouterOptions, RouterProvider};
-
-let tree = route_tree::build_route_tree();
-let router = RouterProvider::new_with_options(
-    window_id,
-    window_handle,
-    Location::new("/"),
-    tree,
-    RouterOptions {
-                    not_found_mode: NotFoundMode::Fuzzy,
-                    ..Default::default()
-    },
-    cx,
-);
-route_tree::register_routes(cx);`} />
+<Code lang="rust" code={"use navi_router::{Location, NotFoundMode, RouterOptions, RouterProvider};\n\nlet tree = route_tree::build_route_tree();\nlet router = RouterProvider::new_with_options(\n    window_id,\n    window_handle,\n    Location::new(\"/\"),\n    tree,\n    RouterOptions {\n                    not_found_mode: NotFoundMode::Fuzzy,\n                    ..Default::default()\n    },\n    cx,\n);\nroute_tree::register_routes(cx);"} />
 
 A `RouterHandle` is the shared handle to the running router state; hooks and `Navigator` read and drive it.
 

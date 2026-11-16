@@ -18,14 +18,7 @@ Définissez la méthode de construction `preload` sur un `Link` avec un `Preload
 | `PreloadType::Intent` | Précharge au premier déplacement de souris sur le lien, après un délai. |
 | `PreloadType::Viewport` | Précharge lorsque le lien entre dans le viewport. |
 
-<Code lang="rust" code={`use navi_router::components::{Link, PreloadType};
-use std::time::Duration;
-
-Link::new("/users/42")
-    .preload(PreloadType::Intent)
-    .preload_delay(Duration::from_millis(120))
-    .child("Open user 42")
-    .build()`} />
+<Code lang="rust" code={"use navi_router::components::{Link, PreloadType};\nuse std::time::Duration;\n\nLink::new(\"/users/42\")\n    .preload(PreloadType::Intent)\n    .preload_delay(Duration::from_millis(120))\n    .child(\"Open user 42\")\n    .build()"} />
 
 Réglez combien de temps le pointeur doit survoler avant qu'un préchargement `Intent` ne se déclenche avec `preload_delay`.
 
@@ -39,8 +32,7 @@ Réglez combien de temps le pointeur doit survoler avant qu'un préchargement `I
 
 Le `Navigator` expose une méthode `preload` pour le même objectif en dehors des liens :
 
-<Code lang="rust" code={`let navigator = Navigator::new();
-navigator.preload("/users/42");`} />
+<Code lang="rust" code={"let navigator = Navigator::new();\nnavigator.preload(\"/users/42\");"} />
 
 ## Étapes suivantes
 

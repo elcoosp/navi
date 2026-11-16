@@ -17,15 +17,10 @@ You add Navi to a Rust UI application in three steps: declare the crates, select
 
 <Tabs>
   <TabItem label="Cargo.toml">
-<Code lang="toml" code={`  [dependencies]
-  navi-router = { path = "../navi/navi-router" }
-  navi-macros = { path = "../navi/navi-macros" }
-  quoin      = { path = "../quoin/quoin", features = ["gpui"] }`} />
+<Code lang="toml" code={"  [dependencies]\n  navi-router = { path = \"../navi/navi-router\" }\n  navi-macros = { path = \"../navi/navi-macros\" }\n  quoin      = { path = \"../quoin/quoin\", features = [\"gpui\"] }"} />
   </TabItem>
   <TabItem label="cargo add">
-<Code lang="bash" title="Terminal" code={` cargo add navi-router --path ../navi/navi-router
- cargo add navi-macros --path ../navi/navi-macros
- cargo add quoin --path ../quoin/quoin --features gpui`} />
+<Code lang="bash" title="Terminal" code={" cargo add navi-router --path ../navi/navi-router\n cargo add navi-macros --path ../navi/navi-macros\n cargo add quoin --path ../quoin/quoin --features gpui"} />
   </TabItem>
 </Tabs>
 
@@ -56,28 +51,17 @@ Enabling the `gpui` feature automatically enables `gpui-rsx-classes`, which keep
 
 Create `navi.config.json` in your project root (see the [config reference](/reference/navi-config/) for every key):
 
-<Code lang="json" title="navi.config.json" code={`{
-  "routes_directory": "./src/routes",
-  "generated_route_tree": "./src/route_tree.gen.rs",
-  "route_token": "route",
-  "index_token": "index",
-  "route_file_ignore_prefix": "-"
-}`} />
+<Code lang="json" title="navi.config.json" code={"{\n  \"routes_directory\": \"./src/routes\",\n  \"generated_route_tree\": \"./src/route_tree.gen.rs\",\n  \"route_token\": \"route\",\n  \"index_token\": \"index\",\n  \"route_file_ignore_prefix\": \"-\"\n}"} />
 
 Then call the generator from `build.rs`:
 
-<Code lang="rust" title="build.rs" code={`fn main() {
-    let config = navi_codegen::NaviConfig::from_file("navi.config.json")
-                    .expect("Failed to read config");
-    navi_codegen::generator::write_route_tree(&config).unwrap();
-}`} />
+<Code lang="rust" title="build.rs" code={"fn main() {\n    let config = navi_codegen::NaviConfig::from_file(\"navi.config.json\")\n                    .expect(\"Failed to read config\");\n    navi_codegen::generator::write_route_tree(&config).unwrap();\n}"} />
 
 ## 4. Verify
 
 Build the workspace and confirm the generated file appears:
 
-<Code lang="bash" title="Terminal" code={`cargo build
-ls src/route_tree.gen.rs`} />
+<Code lang="bash" title="Terminal" code={"cargo build\nls src/route_tree.gen.rs"} />
 
 The generated module exposes `build_route_tree()` and `register_routes()`, which you use to boot the router — see [Getting Started](/tutorials/getting-started/#4-boot-the-app) for the full bootstrap.
 

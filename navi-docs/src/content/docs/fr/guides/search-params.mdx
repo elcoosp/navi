@@ -12,21 +12,7 @@ Vous déclarez un type `search` sur une route pour travailler avec les chaînes 
 
 Donnez à la route un type `search` et lisez-le avec `use_search!` :
 
-<Code lang="rust" title="src/lib.rs" code={`use navi_macros::{define_route, use_search};
-use serde::{Deserialize, Serialize};
-
-#[derive(Clone, Debug, Default, Deserialize, Serialize)]
-pub struct UserSearch {
-    pub sort: Option<String>,
-    pub page: Option<u32>,
-}
-
-define_route!(
-    UsersRoute,
-    path: "/users",
-    search: UserSearch,
-    node: users_node,
-);`} />
+<Code lang="rust" title="src/lib.rs" code={"use navi_macros::{define_route, use_search};\nuse serde::{Deserialize, Serialize};\n\n#[derive(Clone, Debug, Default, Deserialize, Serialize)]\npub struct UserSearch {\n    pub sort: Option<String>,\n    pub page: Option<u32>,\n}\n\ndefine_route!(\n    UsersRoute,\n    path: \"/users\",\n    search: UserSearch,\n    node: users_node,\n);"} />
 
 À l'intérieur de l'UI de la route, `use_search!(UsersRoute)` retourne la structure de recherche analysée pour la navigation courante.
 
@@ -34,12 +20,7 @@ define_route!(
 
 `Link` accepte une valeur `search`, plus `hash` et `state`, donc la navigation transporte des données de requête sans construire les URLs à la main :
 
-<Code lang="rust" code={`use navi_router::components::Link;
-
-Link::new("/users")
-    .search(serde_json::json!({ "sort": "desc", "page": 2 }))
-    .child("Users, descending")
-    .build()`} />
+<Code lang="rust" code={"use navi_router::components::Link;\n\nLink::new(\"/users\")\n    .search(serde_json::json!({ \"sort\": \"desc\", \"page\": 2 }))\n    .child(\"Users, descending\")\n    .build()"} />
 
 ## Valider les paramètres de recherche
 

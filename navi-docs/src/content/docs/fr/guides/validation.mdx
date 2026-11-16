@@ -19,8 +19,7 @@ Vous validez les paramètres de recherche et les données de route avec la bibli
 
 Activez-en exactement une dans votre `Cargo.toml` :
 
-<Code lang="toml" title="Cargo.toml" code={`[dependencies]
-navi-router = { path = "../navi/navi-router", features = ["garde"] }`} />
+<Code lang="toml" title="Cargo.toml" code={"[dependencies]\nnavi-router = { path = \"../navi/navi-router\", features = [\"garde\"] }"} />
 
 <Aside type="caution">
   Les quatre intégrations sont des implémentations globales mutuellement exclusives. Activer
@@ -45,7 +44,7 @@ Implémentez `ValidateSearch` pour votre structure de recherche typée (voir [Pa
 
 Exécutez les tests de l'espace de travail pour la fonctionnalité que vous avez activée :
 
-<Code lang="bash" title="Terminal" code={`cargo test -p navi-router --features garde`} />
+<Code lang="bash" title="Terminal" code={"cargo test -p navi-router --features garde"} />
 
 Le propre `example-app` du dépôt livre un répertoire de routes `validation-test` avec une page par intégration (`validator.rs`, `garde.rs`, `validify.rs`, `valico.rs`) que vous pouvez ouvrir côte à côte.
 

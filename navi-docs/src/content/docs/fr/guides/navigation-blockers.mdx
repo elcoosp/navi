@@ -12,9 +12,7 @@ Vous bloquez la navigation lorsque l'utilisateur est sur le point de perdre du t
 
 La macro `use_blocker!` enveloppe une expression dans un `Blocker` :
 
-<Code lang="rust" code={`use navi_macros::use_blocker;
-
-let blocker = use_blocker!(form.is_dirty());`} />
+<Code lang="rust" code={"use navi_macros::use_blocker;\n\nlet blocker = use_blocker!(form.is_dirty());"} />
 
 L'expression décide si la navigation doit être bloquée : tant que `form.is_dirty()` s'évalue à vrai, les navigations hors de la route sont retenues.
 
@@ -34,13 +32,7 @@ Parce que les bloqueurs protègent contre la perte de données, ils doivent souv
 
 `NavigateOptions` porte un drapeau `ignore_blocker`. Le mettre à `true` pousse une navigation au-delà des bloqueurs enregistrés — approprié pour les flux programmatiques qui ont déjà obtenu le consentement :
 
-<Code lang="rust" code={`use navi_router::{Location, NavigateOptions};
-
-let opts = NavigateOptions {
-    ignore_blocker: true,
-    ..Default::default()
-};
-navigator.push_location_with(Location::new("/goodbye"), &opts);`} />
+<Code lang="rust" code={"use navi_router::{Location, NavigateOptions};\n\nlet opts = NavigateOptions {\n    ignore_blocker: true,\n    ..Default::default()\n};\nnavigator.push_location_with(Location::new(\"/goodbye\"), &opts);"} />
 
 ## Étapes suivantes
 

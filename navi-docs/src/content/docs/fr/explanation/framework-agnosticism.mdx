@@ -30,20 +30,11 @@ Pour chaque route, vous écrivez :
 
 Rien de tout cela ne change entre les frameworks. Changer de framework signifie deux éditions : échanger le drapeau de fonctionnalité quoin, et échanger le bootstrap hôte de trois lignes :
 
-<Code lang="rust" code={`// GPUI / Xilem / Floem — quoin's run_app! host
-use navi_demo_core::NaviDemo;
-use quoin::run_app;
-run_app!(NaviDemo);`} />
+<Code lang="rust" code={"// GPUI / Xilem / Floem \u2014 quoin's run_app! host\nuse navi_demo_core::NaviDemo;\nuse quoin::run_app;\nrun_app!(NaviDemo);"} />
 
-<Code lang="rust" code={`// Dioxus desktop
-fn app() -> Element { rsx! { NaviDemo {} } }
-fn main() { dioxus::LaunchBuilder::desktop().launch(app); }`} />
+<Code lang="rust" code={"// Dioxus desktop\nfn app() -> Element { rsx! { NaviDemo {} } }\nfn main() { dioxus::LaunchBuilder::desktop().launch(app); }"} />
 
-<Code lang="rust" title="src/lib.rs" code={`// Leptos CSR (wasm32)
-#[wasm_bindgen(start)]
-pub fn main() {
-    leptos::mount::mount_to_body(|| view! { <NaviDemo /> });
-}`} />
+<Code lang="rust" title="src/lib.rs" code={"// Leptos CSR (wasm32)\n#[wasm_bindgen(start)]\npub fn main() {\n    leptos::mount::mount_to_body(|| view! { <NaviDemo /> });\n}"} />
 
 ## La preuve dans le dépôt
 

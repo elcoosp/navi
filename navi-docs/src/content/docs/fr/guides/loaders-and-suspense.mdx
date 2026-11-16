@@ -12,22 +12,7 @@ Vous attachez un `loader` à n'importe quelle route et Navi l'exécute lorsqu'on
 
 Le loader reçoit les `params` typés de la route et retourne le type déclaré comme `data`. L'exemple ci-dessous vient du propre `example-app` du dépôt :
 
-<Code lang="rust" code={`define_route!(
-    UsersParamIdRoute,
-    path: "/users/$id",
-    params: UserParams,
-    data: UserData,
-    loader: |params: UserParams| async move {
-                    let id = params.id;
-                    navi_router::sleep(std::time::Duration::from_millis(800)).await;
-                    Ok::<_, Box<dyn std::error::Error + Send + Sync>>(std::sync::Arc::new(UserData {
-                                    id: id.clone(),
-                                    name: format!("User {id}"),
-                                    email: format!("user{id}@example.com"),
-                    }))
-    },
-    component: UserDetailPage,
-);`} />
+<Code lang="rust" code={"define_route!(\n    UsersParamIdRoute,\n    path: \"/users/$id\",\n    params: UserParams,\n    data: UserData,\n    loader: |params: UserParams| async move {\n                    let id = params.id;\n                    navi_router::sleep(std::time::Duration::from_millis(800)).await;\n                    Ok::<_, Box<dyn std::error::Error + Send + Sync>>(std::sync::Arc::new(UserData {\n                                    id: id.clone(),\n                                    name: format!(\"User {id}\"),\n                                    email: format!(\"user{id}@example.com\"),\n                    }))\n    },\n    component: UserDetailPage,\n);"} />
 
 ## Contrôler la mise en cache
 
@@ -44,14 +29,7 @@ Le cache est un vrai cache de requêtes — l'onglet **Cache** des devtools vous
 
 `Awaited` est le composant suspense pour les données de route : il rend un repli pendant que le loader s'exécute et appelle votre closure avec les données une fois résolues. C'est le motif qu'utilise l'exemple `awaited.rs` du dépôt :
 
-<Code lang="rust" title="awaited.rs" code={`use navi_router::components::Awaited;
-
-Awaited::<AwaitedDemoRoute>::new()
-    .fallback(|| quoin_ui::Node::div().child("Loading...").build())
-    .child(|data: String| {
-                    quoin_ui::Node::div().child(format!("Data: {data}")).build()
-    })
-    .build()`} />
+<Code lang="rust" title="awaited.rs" code={"use navi_router::components::Awaited;\n\nAwaited::<AwaitedDemoRoute>::new()\n    .fallback(|| quoin_ui::Node::div().child(\"Loading...\").build())\n    .child(|data: String| {\n                    quoin_ui::Node::div().child(format!(\"Data: {data}\")).build()\n    })\n    .build()"} />
 
 La closure `.child` reçoit la valeur de données chargée.
 
@@ -59,9 +37,7 @@ La closure `.child` reçoit la valeur de données chargée.
 
 `SuspenseBoundary` affiche une UI de repli pendant que les routes imbriquées se chargent. Il prend une closure de repli et rend la route enfant appariée à l'intérieur une fois le chargement terminé :
 
-<Code lang="rust" code={`use navi_router::components::SuspenseBoundary;
-
-SuspenseBoundary::new(|| quoin_ui::Node::text("Loading section…").build()).build()`} />
+<Code lang="rust" code={"use navi_router::components::SuspenseBoundary;\n\nSuspenseBoundary::new(|| quoin_ui::Node::text(\"Loading section\u2026\").build()).build()"} />
 
 Placez-le dans un layout pour donner à un sous-arbre entier un état de chargement partagé.
 

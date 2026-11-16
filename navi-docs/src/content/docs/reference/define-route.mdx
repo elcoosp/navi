@@ -10,21 +10,7 @@ import { CardGrid, Code, LinkCard } from '@astrojs/starlight/components';
 
 ## Signature
 
-<Code lang="rust" code={`define_route!(
-    MyRoute,
-    path: "/users/$id",
-    params: UserParams,
-    search: UserSearch,
-    data: User,
-    loader: |params, executor| async move { /* fetch data */ },
-    before_load: |ctx| async move { BeforeLoadResult::Ok },
-    on_enter: |loc| log::info!("entered"),
-    on_leave: |loc| log::info!("left"),
-    stale_time: Duration::from_secs(60),
-    gc_time: Duration::from_secs(300),
-    meta: { /* custom metadata */ },
-    node: my_node,
-);`} />
+<Code lang="rust" code={"define_route!(\n    MyRoute,\n    path: \"/users/$id\",\n    params: UserParams,\n    search: UserSearch,\n    data: User,\n    loader: |params, executor| async move { /* fetch data */ },\n    before_load: |ctx| async move { BeforeLoadResult::Ok },\n    on_enter: |loc| log::info!(\"entered\"),\n    on_leave: |loc| log::info!(\"left\"),\n    stale_time: Duration::from_secs(60),\n    gc_time: Duration::from_secs(300),\n    meta: { /* custom metadata */ },\n    node: my_node,\n);"} />
 
 ## Arguments
 

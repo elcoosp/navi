@@ -77,11 +77,7 @@ From this tree the scanner produces, among others:
 
 You are not locked into `$` and `index`. The tokens are configuration:
 
-<Code lang="json" code={`{
-  "route_token": "route",
-  "index_token": "index",
-  "route_file_ignore_prefix": "-"
-}`} />
+<Code lang="json" code={"{\n  \"route_token\": \"route\",\n  \"index_token\": \"index\",\n  \"route_file_ignore_prefix\": \"-\"\n}"} />
 
 If you change `route_token`, dynamic segments and splats use your token instead of `$` in file names.
 
