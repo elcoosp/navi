@@ -61,8 +61,7 @@ define_route!(IndexRoute, path: "/", is_index: true, node: index_node);`} />
 
 Add the dynamic user route at `src/routes/users/$id.rs`. The `$id` file name declares a path parameter, and the `loader` runs when someone navigates to the route:
 
-<Code lang="rust" title="src/lib.rs" code={`// src/routes/users/$id.rs
-use std::sync::Arc;
+<Code lang="rust" title="src/routes/users/$id.rs" code={`use std::sync::Arc;
 
 use navi_macros::{define_route, use_loader_data};
 use serde::{Deserialize, Serialize};
