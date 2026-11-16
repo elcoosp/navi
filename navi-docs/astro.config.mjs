@@ -6,11 +6,7 @@ export default await defineDocsConfig({
   domain: 'navi.vercel.app',
   title: "Navi",
   description: "A powerful file-based router for Rust UI frameworks — one route table, every frontend, powered by quoin.",
-  sidebar: [],
   extraStarlight: {
-                        expressiveCode: {
-                        	themes: ['github-light', 'github-dark']
-                        },
                         title: "Navi",
                         description:
                                 "A powerful file-based router for Rust UI frameworks — one route table, every frontend, powered by quoin.",
@@ -18,7 +14,6 @@ export default await defineDocsConfig({
                         // replaces the text title in the header while staying accessible.
 
                         logo: { src: './src/assets/logo.png', replacesTitle: true },
-                        favicon: '/favicon.png',
                         social: [
                                 {
                                         icon: "github",
@@ -77,6 +72,5 @@ export default await defineDocsConfig({
                         // (src/content/docs/404.mdx), which the catch-all
                         // route renders at /404 — Starlight's built-in 404
                         // route is disabled to avoid a route conflict.
-                        disable404Route: true,
                 },
 });

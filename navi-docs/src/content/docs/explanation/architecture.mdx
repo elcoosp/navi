@@ -8,6 +8,19 @@ import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 Navi separates routing logic from rendering so completely that the engine cannot tell which UI framework is displaying it. This page walks the layers from the inside out.
 
+```mermaid
+flowchart TD
+    APP["App & File Routes<br/><i>navi-macros · navi-codegen</i>"]
+    ADAPT["Framework Adapter<br/><i>navi-router (components, loaders, scroll)</i>"]
+    CORE["Pure State Machine<br/><i>navi-router-core (RouterCore, RouteTree)</i>"]
+    PRIM["Primitives<br/><i>navi-core</i>"]
+    DEV["Tooling<br/><i>navi-devtools · navi-test</i>"]
+    APP --> ADAPT
+    ADAPT -- "NavigationEffect" --> CORE
+    CORE --> PRIM
+    DEV -.-> ADAPT
+```
+
 ## The layers
 
 1. **`navi-core`** — shared primitives: window keys, ids, config types. Everything above depends on it; it depends on nothing.
