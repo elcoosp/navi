@@ -44,7 +44,7 @@ Le cache est un vrai cache de requêtes — l'onglet **Cache** des devtools vous
 
 `Awaited` est le composant suspense pour les données de route : il rend un repli pendant que le loader s'exécute et appelle votre closure avec les données une fois résolues. C'est le motif qu'utilise l'exemple `awaited.rs` du dépôt :
 
-<Code lang="rust" code={`use navi_router::components::Awaited;
+<Code lang="rust" title="awaited.rs" code={`use navi_router::components::Awaited;
 
 Awaited::<AwaitedDemoRoute>::new()
     .fallback(|| quoin_ui::Node::div().child("Loading...").build())

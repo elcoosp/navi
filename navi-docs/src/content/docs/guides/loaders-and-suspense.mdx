@@ -44,7 +44,7 @@ The cache is a real query cache — the devtools **Cache** tab lets you inspect 
 
 `Awaited` is the suspense component for route data: it renders a fallback while the loader runs and calls your closure with the data once resolved. This is the pattern the repository's `awaited.rs` example uses:
 
-<Code lang="rust" code={`use navi_router::components::Awaited;
+<Code lang="rust" title="awaited.rs" code={`use navi_router::components::Awaited;
 
 Awaited::<AwaitedDemoRoute>::new()
     .fallback(|| quoin_ui::Node::div().child("Loading...").build())

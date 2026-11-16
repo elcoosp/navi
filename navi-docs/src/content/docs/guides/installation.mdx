@@ -23,7 +23,7 @@ You add Navi to a Rust UI application in three steps: declare the crates, select
   quoin      = { path = "../quoin/quoin", features = ["gpui"] }`} />
   </TabItem>
   <TabItem label="cargo add">
-<Code lang="bash" code={` cargo add navi-router --path ../navi/navi-router
+<Code lang="bash" title="Terminal" code={` cargo add navi-router --path ../navi/navi-router
  cargo add navi-macros --path ../navi/navi-macros
  cargo add quoin --path ../quoin/quoin --features gpui`} />
   </TabItem>
@@ -56,7 +56,7 @@ Enabling the `gpui` feature automatically enables `gpui-rsx-classes`, which keep
 
 Create `navi.config.json` in your project root (see the [config reference](/reference/navi-config/) for every key):
 
-<Code lang="json" code={`{
+<Code lang="json" title="navi.config.json" code={`{
   "routes_directory": "./src/routes",
   "generated_route_tree": "./src/route_tree.gen.rs",
   "route_token": "route",
@@ -66,7 +66,7 @@ Create `navi.config.json` in your project root (see the [config reference](/refe
 
 Then call the generator from `build.rs`:
 
-<Code lang="rust" code={`fn main() {
+<Code lang="rust" title="build.rs" code={`fn main() {
     let config = navi_codegen::NaviConfig::from_file("navi.config.json")
                     .expect("Failed to read config");
     navi_codegen::generator::write_route_tree(&config).unwrap();
@@ -76,7 +76,7 @@ Then call the generator from `build.rs`:
 
 Build the workspace and confirm the generated file appears:
 
-<Code lang="bash" code={`cargo build
+<Code lang="bash" title="Terminal" code={`cargo build
 ls src/route_tree.gen.rs`} />
 
 The generated module exposes `build_route_tree()` and `register_routes()`, which you use to boot the router — see [Getting Started](/tutorials/getting-started/#4-boot-the-app) for the full bootstrap.

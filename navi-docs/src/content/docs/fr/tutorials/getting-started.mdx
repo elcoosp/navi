@@ -18,7 +18,7 @@ Vous construisez une petite application routée dans ce tutoriel : un layout rac
 
 Ajoutez les crates Navi plus quoin avec la fonctionnalité de votre framework à `Cargo.toml` :
 
-<Code lang="toml" code={`[dependencies]
+<Code lang="toml" title="Cargo.toml" code={`[dependencies]
 navi-router = { path = "../navi/navi-router" }
 navi-macros = { path = "../navi/navi-macros" }
 quoin      = { path = "../quoin/quoin", features = ["gpui"] }`} />
@@ -29,8 +29,7 @@ La valeur `features` sélectionne votre framework UI : `gpui`, `dioxus`, `leptos
 
 Les routes sont de simples fichiers Rust sous `src/routes`. Créez un layout racine à `src/routes/__root.rs` — les fichiers nommés `__root` ou commençant par `_` deviennent des layouts qui rendent leurs enfants via un `<Outlet>` :
 
-<Code lang="rust" code={`// src/routes/__root.rs
-use navi_macros::define_route;
+<Code lang="rust" title="src/routes/__root.rs" code={`use navi_macros::define_route;
 use navi_router::components::{Link, Outlet};
 use quoin_ui::{Node, StyleCmd};
 
@@ -46,8 +45,7 @@ define_route!(RootRoute, path: "/", is_layout: true, node: root_node);`} />
 
 Créez la page d'index à `src/routes/index.rs` :
 
-<Code lang="rust" code={`// src/routes/index.rs
-use navi_macros::define_route;
+<Code lang="rust" title="src/routes/index.rs" code={`use navi_macros::define_route;
 use navi_router::components::Link;
 use quoin_ui::{Node, StyleCmd};
 
@@ -111,7 +109,7 @@ fn user_node() -> Node {
 
 Navi génère l'arbre de routes depuis votre répertoire `src/routes` à la compilation. Créez `navi.config.json` à la racine de votre projet :
 
-<Code lang="json" code={`{
+<Code lang="json" title="navi.config.json" code={`{
   "routes_directory": "./src/routes",
   "generated_route_tree": "./src/route_tree.gen.rs",
   "route_token": "route",
@@ -121,8 +119,7 @@ Navi génère l'arbre de routes depuis votre répertoire `src/routes` à la comp
 
 Puis câblez le générateur dans `build.rs` :
 
-<Code lang="rust" code={`// build.rs
-fn main() {
+<Code lang="rust" title="build.rs" code={`fn main() {
     let config = navi_codegen::NaviConfig::from_file("navi.config.json")
                     .expect("Failed to read config");
     navi_codegen::generator::write_route_tree(&config).unwrap();
@@ -168,7 +165,7 @@ pub fn main() {
 
 ## 5. L'exécuter
 
-<Code lang="bash" code={`cargo run`} />
+<Code lang="bash" title="Terminal" code={`cargo run`} />
 
 Vous démarrez sur `/`, suivez le lien vers `/users/42`, et regardez le loader se résoudre en données utilisateur rendues. Les segments statiques gagnent toujours sur les dynamiques lors de l'appariement, donc ajouter `src/routes/users/new.rs` plus tard masquera `$id` pour ce chemin exact de manière déterministe.
 
