@@ -18,3 +18,8 @@
 	--sl-color-accent-high: hsl(0 30% 75%);
 	--sl-color-text-accent: var(--sl-color-accent-high);
 }
+
+[data-theme="dark"] .hero img,
+[data-theme="dark"] .site-title img {
+	filter: invert(1);
+}
