@@ -39,7 +39,7 @@ run_app!(NaviDemo);`} />
 fn app() -> Element { rsx! { NaviDemo {} } }
 fn main() { dioxus::LaunchBuilder::desktop().launch(app); }`} />
 
-<Code lang="rust" code={`// Leptos CSR (wasm32)
+<Code lang="rust" title="src/lib.rs" code={`// Leptos CSR (wasm32)
 #[wasm_bindgen(start)]
 pub fn main() {
     leptos::mount::mount_to_body(|| view! { <NaviDemo /> });

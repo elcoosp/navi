@@ -61,7 +61,7 @@ define_route!(IndexRoute, path: "/", is_index: true, node: index_node);`} />
 
 Add the dynamic user route at `src/routes/users/$id.rs`. The `$id` file name declares a path parameter, and the `loader` runs when someone navigates to the route:
 
-<Code lang="rust" code={`// src/routes/users/$id.rs
+<Code lang="rust" title="src/lib.rs" code={`// src/routes/users/$id.rs
 use std::sync::Arc;
 
 use navi_macros::{define_route, use_loader_data};
@@ -131,7 +131,7 @@ Every build now regenerates `src/route_tree.gen.rs`, which exposes `build_route_
 
 On GPUI, Xilem, and Floem you boot through quoin's `run_app!` host macro. Initialize the router inside your host with the generated tree:
 
-<Code lang="rust" code={`use navi_router::{Location, NotFoundMode, RouterOptions, RouterProvider};
+<Code lang="rust" title="src/route_tree.gen.rs" code={`use navi_router::{Location, NotFoundMode, RouterOptions, RouterProvider};
 
 mod route_tree {
     include!("route_tree.gen.rs");
@@ -157,7 +157,7 @@ For the other frameworks only the bootstrap changes — the route table, loaders
 fn app() -> Element { rsx! { NaviDemo {} } }
 fn main() { dioxus::LaunchBuilder::desktop().launch(app); }`} />
 
-<Code lang="rust" code={`// Leptos CSR (wasm32)
+<Code lang="rust" title="src/lib.rs" code={`// Leptos CSR (wasm32)
 #[wasm_bindgen(start)]
 pub fn main() {
     leptos::mount::mount_to_body(|| view! { <NaviDemo /> });
