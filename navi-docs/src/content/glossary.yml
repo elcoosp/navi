@@ -1,0 +1,29 @@
+# Curated domain glossary for @elcoosp/docs-toolkit (starlight-term-glossary)
+- term: "radix trie"
+  locale: en
+  href: "/explanation/route-matching/"
+  definition: "Ranked prefix tree used by navi-router-core to resolve static, dynamic, and splat routes deterministically without allocations."
+- term: "navigation blocker"
+  locale: en
+  href: "/guides/navigation-blockers/"
+  definition: "Guard hook intercepting outgoing transitions (such as unsaved forms) with synchronous or async confirmation."
+- term: "route guard"
+  locale: en
+  href: "/guides/route-guards/"
+  definition: "Lifecycle check evaluated before entering a route that can allow, redirect, or cancel navigation."
+- term: "scroll restoration"
+  locale: en
+  href: "/guides/scroll-restoration/"
+  definition: "Automatic saving and restoring of scroll offsets per history entry across back and forward navigation."
+- term: "file-based routing"
+  locale: en
+  href: "/guides/file-based-routing/"
+  definition: "Convention mapping files and folders on disk directly to typed route definitions and nested layouts."
+- term: "bloqueur de navigation"
+  locale: fr
+  href: "/fr/guides/navigation-blockers/"
+  definition: "Intercepteur permettant de suspendre ou confirmer une transition sortante (par exemple en cas de formulaire non enregistré)."
+- term: "routage basé sur les fichiers"
+  locale: fr
+  href: "/fr/guides/file-based-routing/"
+  definition: "Convention associant directement l’arborescence des fichiers sur disque aux définitions de routes typées."
