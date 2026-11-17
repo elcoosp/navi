@@ -46,6 +46,7 @@ Exactly one UI seam applies per route:
 ## Scanner interaction
 
 The scanner reads your route files at build time and extracts the route type name from `define_route!(Name, ...)` calls. A file that calls `define_route!` without a parsable type name fails the build, and `is_layout: true` participates in layout inference even when file naming alone would not imply it.
+
 ## Related
 
 <CardGrid>

@@ -36,6 +36,7 @@ Avec la fonctionnalité `nested-search` activée, `parse_query_nested` et `query
 ## Couture de rendu
 
 Tout le rendu passe par [quoin](https://github.com/elcoosp/quoin) : l'UI des routes est exprimée en arbres `quoin_ui::Node` (ou en coquilles `component!`), et les émetteurs de macros de quoin les abaissent vers le framework sélectionné. La pile de données est [rs-query](https://github.com/elcoosp/rs-query), le cache de requêtes avec stale-time et GC derrière les loaders de route.
+
 ## Voir aussi
 
 <CardGrid>

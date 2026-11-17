@@ -41,6 +41,7 @@ import { CardGrid, Code, LinkCard } from '@astrojs/starlight/components';
 Two hooks cooperating in one route's render function:
 
 <Code lang="rust" code={"use navi_macros::{use_loader_data, use_params};\n\nfn user_node() -> Node {\n    let data = use_loader_data!(UsersParamIdRoute);\n    match data.map(|d| (*d).clone()) {\n                    Some(user) => Node::text(format!(\"{} \u2014 {}\", user.name, user.email)),\n                    None => Node::text(\"Loading...\"),\n    }\n}"} />
+
 ## Related
 
 <CardGrid>

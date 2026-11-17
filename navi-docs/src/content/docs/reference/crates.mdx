@@ -36,6 +36,7 @@ With the `nested-search` feature enabled, `parse_query_nested` and `query_to_str
 ## Rendering seam
 
 All rendering goes through [quoin](https://github.com/elcoosp/quoin): route UI is expressed as `quoin_ui::Node` trees (or `component!` shells), and quoin's macro emitters lower them to the selected framework. The data stack is [rs-query](https://github.com/elcoosp/rs-query), the query cache with stale-time and GC behind route loaders.
+
 ## Related
 
 <CardGrid>

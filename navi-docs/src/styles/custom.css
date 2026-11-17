@@ -6,20 +6,20 @@
  */
 
 :root {
-	--sl-color-accent-low: hsl(0 30% 93%);
-	--sl-color-accent: hsl(0 30% 35%);
-	--sl-color-accent-high: hsl(0 30% 28%);
-	--sl-color-text-accent: var(--sl-color-accent-high);
+  --sl-color-accent-low: hsl(0 30% 93%);
+  --sl-color-accent: hsl(0 30% 35%);
+  --sl-color-accent-high: hsl(0 30% 28%);
+  --sl-color-text-accent: var(--sl-color-accent-high);
 }
 
-[data-theme="dark"] {
-	--sl-color-accent-low: hsl(0 30% 16%);
-	--sl-color-accent: hsl(0 30% 60%);
-	--sl-color-accent-high: hsl(0 30% 75%);
-	--sl-color-text-accent: var(--sl-color-accent-high);
+[data-theme='dark'] {
+  --sl-color-accent-low: hsl(0 30% 16%);
+  --sl-color-accent: hsl(0 30% 60%);
+  --sl-color-accent-high: hsl(0 30% 75%);
+  --sl-color-text-accent: var(--sl-color-accent-high);
 }
 
-[data-theme="dark"] .hero img,
-[data-theme="dark"] .site-title img {
-	filter: invert(1);
+[data-theme='dark'] .hero img,
+[data-theme='dark'] .site-title img {
+  filter: invert(1);
 }
